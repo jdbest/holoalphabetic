@@ -16,6 +16,7 @@ Description: Like the New York Times' "Spelling Bee", the package gives
     come from the Spell Checking Oriented Word Lists (SCOWL) by Kevin Atkinson,
     which can be found at http://wordlist.aspell.net/scowl-readme.
 URL: https://github.com/jdbest/holoalphabetic
+BugReports: https://github.com/jdbest/holoalphabetic/issues
 Depends: R (>= 4.0)
 License: GPL (>= 3)
 Encoding: UTF-8
