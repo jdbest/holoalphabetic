@@ -1,0 +1,25 @@
+Package: holoalphabetic
+Type: Package
+Title: Interactive Word Games to Find Pangrams
+Year: 2020
+Version: 0.1.0
+Authors@R: 
+    person(given = "Justin",
+           family = "Dainer-Best",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-1868-0337"),
+           email = "jdainerbest@bard.edu")
+Description: Like the New York Times' "Spelling Bee", the package gives 
+    you a set of 7 or more letters and invites you to identify all possible 
+    words using those letters. Find the pangram which uses all 7, or simply 
+    identify as many words as possible with those letters. The word lists 
+    come from the Spell Checking Oriented Word Lists (SCOWL) by Kevin Atkinson,
+    which can be found at http://wordlist.aspell.net/scowl-readme.
+URL: https://github.com/jdbest/holoalphabetic
+Depends: R (>= 4.0)
+License: GPL (>= 3)
+Encoding: UTF-8
+LazyData: true
+Imports: 
+  stringr
+RoxygenNote: 7.1.1
