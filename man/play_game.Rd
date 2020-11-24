@@ -38,6 +38,19 @@ directly, it will create the game itself. Assigning the results to a variable
 will allow you to pause and continue the game later by running
 \code{play_game(prev_game)}.
 }
+\examples{
+\dontrun{
+play_game()
+
+# assuming a saved game called prev_game
+play_game(game = prev_game)
+
+# permit obscenities
+play_game(keep_central_first = TRUE,
+          obscenities = TRUE)
+}
+
+}
 \seealso{
 \code{\link{create_game}} to set up a game without playing.
 }
