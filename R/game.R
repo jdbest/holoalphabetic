@@ -213,7 +213,6 @@ test_word <- function(input, game, state) {
 #'
 #' # assuming a saved game called prev_game
 #' play_game(game = prev_game)
-#' }
 #'
 #' # permit obscenities
 #' play_game(keep_central_first = TRUE,
