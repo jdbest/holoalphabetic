@@ -1,7 +1,7 @@
 Package: holoalphabetic
 Type: Package
 Title: Interactive Word Games to Find Pangrams
-Year: 2020
+Date: 2020
 Version: 0.1.0
 Authors@R: 
     person(given = "Justin",
