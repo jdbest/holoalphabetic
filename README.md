@@ -1,5 +1,7 @@
 # holoalphabetic: Interactive pangram word games
 
+![](man/figures/logo.png)
+
 This is a series of R functions written to create "pangram" wordgames. A pangram or holoalphabetic sentence is one which uses every letter of the alphabet, e.g., "Sphinx of black quartz, judge my vow." (Or, more famously, "The quick brown fox jumps over the lazy dog.") In the context of this game, however, the word game is limited to 6-10 letters (defaulting to 7). For example, the letters l, a, h, t, o, m, and b can form 46 words of at least four letters, of which the only pangram (using all seven letters) is "mothball".
 
 The game requires you to use **one letter** in every word - for example, *m* might be required, meaning that "moth" would be an acceptable word, but "loath" would not be.
