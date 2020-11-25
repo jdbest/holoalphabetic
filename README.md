@@ -6,7 +6,13 @@ The game requires you to use **one letter** in every word---for example, *m* mig
 
 The R functions have been written to create an interactive game, meaning that you can guess words and receive points for each word.
 
-The game is inspired by the New York Times' "[Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee)," and uses word lists from the [Spell Checking Oriented Word Lists](http://wordlist.aspell.net/scowl-readme) (SCOWL) by Kevin Atkinson.
+The game is inspired by the New York Times' "[Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee)," and uses word lists from the [Spell Checking Oriented Word Lists](http://wordlist.aspell.net/scowl-readme) (SCOWL) by Kevin Atkinson. Because of the multiple lists, this game adds the following functionality (besides the fact that you can play as many games as you like!):
+
+* You can choose the number of letters in the game, from 6--10 (`num_letters`)
+* You can use a more restrictive dictionary (`dictionary = "slim"`) or a broader, more inclusive one (`dictionary = "broad"`)
+* You can include profanity (`obscenities = TRUE`)
+* You can choose to specify the minimum number of letters for words (e.g., allow three-letter words) with `min_word_length`
+* You can choose to play your own version (e.g., provide your own seven letters) with `game_letters`
 
 ## Installation
 
@@ -35,6 +41,15 @@ game1 <- play_game(game1)
 
 You may always exit the game by typing an `x` in the Console; doing so will save your data. Note that using the ESC key will **not** result in your data saving. 
 
+### Changing the defaults
+
+You can also play the game with modifications; for example, you might want to play a smaller (6-letter) variant with profanity included:
+
+```
+game2 <- play_game(num_letters = 6, obscenities = TRUE)
+game2 <- play_game(game2)
+```
+
 ## Other functions
 
 ### `create_game()`
@@ -42,20 +57,19 @@ You may always exit the game by typing an `x` in the Console; doing so will save
 The function `create_game()` is called by `play_game()` to make a new pangram; you may choose to create multiple games all at once, and access just the letters from the resulting object, e.g.:
 
 ```
-letter_list <- create_game()
+letter_list <- create_game(num_letters = 8)
 letter_list$game_letters
 ```
 
-The `create_game()` function chooses letters at random unless you request otherwise; as a result, it occasionally will take some time until it identifies letters that can form a pangram.
+The `create_game()` function chooses letters at random unless you request otherwise; as a result, it occasionally will take some time until it identifies letters that can form a pangram, especially if you're using `num_letters` higher than 7.
 
 ### `find_all_words()` and `has_pangram()`
 
 The function `find_all_words()` takes a string of letters and attempts to identify words that use any combination of them. By default, all words will use the first letter as the central one; you can change this argument. 
 
-The function `has_pangram()` takes a vector of separated letters and simply identifies whether a pangram exists. This is particularly useful if you're doubting yourself! It intentionally does *not* tell you what the pangram is, however.
+The function `has_pangram()` takes a vector of separated letters and simply identifies whether a pangram exists. This is particularly useful if you're doubting yourself! It intentionally does *not* tell you what the pangram is, however. (Use `find_all_words()` for that... or find it yourself!)
 
 ```
 find_all_words("jutis")
 has_pangram("jutis")
 ```
-
