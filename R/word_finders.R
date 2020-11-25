@@ -75,19 +75,10 @@ find_all_words <- function(game_letters,
     string = dictionary,
     pattern = central_letter
   )
-  antipatterned <- paste0("[",
-                          paste0(letters[! letters %in% game_letters],
-                                 collapse=""), "]+")
-  # drop all that have that "antipattern" (i.e., the wrong game_letters)
+  patterned <- paste0("^[", paste0(game_letters, collapse=""), "]+$")
   all_words <- stringr::str_subset(
     string = all_words,
-    pattern = antipatterned,
-    negate = TRUE
-  )
-  # make sure all words have English letters
-  all_words <- stringr::str_subset(
-    string = all_words,
-    pattern = "[a-z]"
+    pattern = patterned
   )
   # include only words longer than the minimum # of letters
   all_words <- all_words[nchar(all_words) >= min_word_length]
