@@ -119,6 +119,7 @@ create_game <- function(num_letters = 7, game_letters = NULL, min_word_length = 
   remaining_letters <- game_letters[central_letter != game_letters]
 
   game_obj <- structure(list(scored_word_list = scored_word_list,
+                             game_letters = game_letters,
                              remaining_letters = remaining_letters,
                              central_letter = central_letter,
                              pangram = pangram,
