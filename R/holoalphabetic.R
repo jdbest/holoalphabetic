@@ -10,7 +10,8 @@
 #' @section holoalphabetic functions:
 #' The primary functions in holoalphabetic are \code{\link{play_game}}, which
 #' lets you actually play the game, and \code{\link{create_game}}, which just
-#' sets a game up for you.
+#' sets a game up for you. For more information, look at the main github site,
+#' \url{https://github.com/jdbest/holoalphabetic/}
 #'
 #' @docType package
 #' @name holoalphabetic
