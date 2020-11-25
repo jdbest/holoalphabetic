@@ -134,7 +134,7 @@ create_game <- function(num_letters = 7, game_letters = NULL, min_word_length = 
 test_word <- function(input, game, state) {
   # only if input is not blank
   if(input != "") {
-    state$counter = state$counter + 1
+    state$counter <- state$counter + 1
     # record the guess
     state$guesses[input] <- input
     # if input is contained in word list
@@ -260,7 +260,7 @@ play_game <- function(game = NULL,
   cat("Letters:", toupper(game$central_letter), game$remaining_letters, "\n")
 
   if(! exists("state")) {
-    state <- list(counter = 1,
+    state <- list(counter = 0,
                   guesses = list(),
                   words = game$scored_word_list,
                   keep_central_first = keep_central_first,
