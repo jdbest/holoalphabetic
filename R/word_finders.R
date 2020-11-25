@@ -23,20 +23,17 @@
 #'
 #' @export
 has_pangram <- function(game_letters, dictionary = normal) {
-  pangramwords <- dictionary
-  # loop through to detect words which use all game_letters
-  if(length(game_letters) == 1) {game_letters <- unlist(strsplit(game_letters, ""))}
+  # include only words that start with our letters,
+  # use only them, and end with them
+  any_pattern <- paste0("^[", paste0(game_letters, collapse=""), "]+$")
+  all_words <- stringr::str_subset(string = dictionary,
+                                   pattern = any_pattern)
+  # loop to make sure *each* letter is included
+  pangramwords <- all_words
   for(l in game_letters) {
     pangramwords <- stringr::str_subset(string = pangramwords,
                                         pattern = l)
   }
-  # drop any words that include EXTRA letters
-  antipatterned <- paste0("[",
-                          paste0(letters[! letters %in% game_letters],
-                                 collapse=""), "]+")
-  pangramwords <- stringr::str_subset(string = pangramwords,
-                                      pattern = antipatterned,
-                                      negate = TRUE)
   if(length(pangramwords) == 0) return(FALSE) else return(TRUE)
 }
 
