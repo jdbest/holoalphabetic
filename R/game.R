@@ -97,7 +97,6 @@ create_game <- function(num_letters = 7, game_letters = NULL, min_word_length = 
          check_counter < 2000) {
     game_letters <- choose_game_letters(game_letters = user_game_letters,
                               num_letters = num_letters)
-    # print(paste0(game_letters))
     check_counter <- check_counter + 1
   }
   if(! has_pangram(game_letters, dictionary)) {
