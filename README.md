@@ -76,6 +76,7 @@ has_pangram("jutis")
 
 ## Planned changes
 
-* Ideally, clean up the word-choice function to happen more quickly, thus allowing for larger word sets
+* Ideally, clean up the word-choice function to happen more quickly, thus allowing for larger word sets---although this will likely always take some time. Even using regular expressions and looping only through words identified that way can still take seconds to find a game with a functioning pangram.
 * Allow users to play *without* a central letter (i.e., closer to Boggle)
 * Consider switching to using a package-created environment, as per *[Advanced R](https://adv-r.hadley.nz/environments.html#explicit-envs)*
+* If a word list (corpus) is easily found, add a Spanish-language version
