@@ -103,6 +103,6 @@ print_rules <- function(game, state) {
 
 all_guesses <- function(state) {
   cat("You've guessed", state$counter, "times: \n\n",
-      paste(state$guesses, collapse = ", "))
+      paste(state$guesses, collapse = ", "), "\n")
   return(state)
 }

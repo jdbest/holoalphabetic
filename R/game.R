@@ -3,6 +3,9 @@
 # play_game()
 # and test_word()
 
+# environment
+# game_env <- new.env(parent = emptyenv())
+
 # --------------------------------------------------------------
 #' Set up a holoalphabetic game
 #'
@@ -123,6 +126,7 @@ create_game <- function(num_letters = 7, game_letters = NULL, min_word_length = 
                              central_letter = central_letter,
                              pangram = pangram,
                              min_word_length = min_word_length))
+  # game_env$game <- game_obj
   return(invisible(game_obj))
 }
 
@@ -145,7 +149,7 @@ test_word <- function(input, game, state) {
       if(stringr::str_detect(input, not_letters)) {
         cat("You've used letters not included in the options!\n")
       } else if(stringr::str_detect(input, game$central_letter, negate=TRUE)) {
-        cat("You must use the central letter,", game$central_letter, ".\n")
+        cat(paste0("You must use the central letter, ", game$central_letter, ".\n"))
       } else if(nchar(input) < game$min_word_length) {
         cat(input, "is shorter than the minimum word length!\n")
       } else {
