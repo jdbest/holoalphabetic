@@ -275,6 +275,10 @@ play_game <- function(game = NULL,
         state$finished <- TRUE
         state
       },
+      "exit" = {
+        state$finished <- TRUE
+        state
+      },
       "y" = print_rules(game, state),
       "[g]" = all_guesses(state),
       "[a]" = print_answers(game, state),
