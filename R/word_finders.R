@@ -7,7 +7,7 @@
 #' Given a list of letters and a dictionary, is there a pangram?
 #'
 #' @param game_letters A character vector of letters in the format of
-#'   c("l", "e", "t", "r", "s").
+#'   c("l", "e", "t", "r", "s") or "letrs"
 #' @param dictionary A character list of words---defaults to the normal list
 #'   from the package.
 #'
@@ -16,7 +16,7 @@
 #' @examples
 #' has_pangram(c("l", "e", "t", "r", "s")) # yes
 #' has_pangram(c("d", "r", "g", "t", "i")) # none
-#' # this is the wrong way to call this function (but will not throw an error):
+#' # or:
 #' has_pangram("leters")
 #'
 #' @seealso \code{\link{find_all_words}}
@@ -25,6 +25,7 @@
 has_pangram <- function(game_letters, dictionary = normal) {
   pangramwords <- dictionary
   # loop through to detect words which use all game_letters
+  if(length(game_letters) == 1) {game_letters <- unlist(strsplit(game_letters, ""))}
   for(l in game_letters) {
     pangramwords <- stringr::str_subset(string = pangramwords,
                                         pattern = l)
