@@ -8,7 +8,7 @@ has_pangram(game_letters, dictionary = normal)
 }
 \arguments{
 \item{game_letters}{A character vector of letters in the format of
-c("l", "e", "t", "r", "s").}
+c("l", "e", "t", "r", "s") or "letrs"}
 
 \item{dictionary}{A character list of words---defaults to the normal list
 from the package.}
@@ -22,7 +22,7 @@ Given a list of letters and a dictionary, is there a pangram?
 \examples{
 has_pangram(c("l", "e", "t", "r", "s")) # yes
 has_pangram(c("d", "r", "g", "t", "i")) # none
-# this is the wrong way to call this function (but will not throw an error):
+# or:
 has_pangram("leters")
 
 }
