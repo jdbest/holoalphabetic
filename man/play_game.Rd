@@ -21,7 +21,7 @@ same letters (and therefore words).}
 
 \item{...}{Arguments to pass to \code{\link{create_game}}, including
 \code{num_letters}, \code{game_letters}, \code{min_word_length},
-\code{dictionary}, and \code{obscenities}.}
+\code{central} \code{dictionary}, and \code{obscenities}.}
 }
 \value{
 Regardless of whether you include any inputs, the code will run a
