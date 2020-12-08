@@ -19,11 +19,13 @@
 #' not find a set of letters with a pangram; if so, simply run the function
 #' again.
 #'
-#' @param num_letters The number of letters for the game; defaults to 7, and
-#'   should be between 6 and 10.
 #' @param game_letters User-selected letters to use in the game (optional). Will
 #'   result in a warning if more letters are chosen than \code{num_letters}. If
 #'   including, this should be a character string, e.g., "stb".
+#' @param num_letters The number of letters for the game; defaults to 7, and
+#'   should be between 6 and 10.
+#' @param central The central (that is, required) letter (optional). If not
+#'   provided, will be randomly chosen from among the \code{game_letters}.
 #' @param min_word_length Expected length of words. Defaults to 4 letters, but
 #'   can be between 2 and 6.
 #' @param dictionary Character string. Choice of how detailed of a dictionary to
@@ -45,16 +47,17 @@
 #' @seealso \code{\link{play_game}} to play the game
 #'
 #' @export
-create_game <- function(num_letters = 7, game_letters = NULL, min_word_length = 4,
+create_game <- function(game_letters = NULL, num_letters = 7,
+                        central = NULL, min_word_length = 4,
                  dictionary = "normal", obscenities = FALSE) {
   if( ! num_letters %in% c(6:10)) {
     warning(paste0("The game is meant to be played with between 6 and 10 letters. ",
-                "Using the default of 7; please choose a number between 6 and 10."))
+                "Using the default of 7; please choose a number between 6 and 10.\n"))
     num_letters <- 7
   }
   if( ! dictionary %in% c("normal", "broad", "slim")) {
-    warning("The dictionary must be one of 'normal', 'slim', or 'broad'.")
-    warning("Defaulting to 'normal'.")
+    warning("The dictionary must be one of 'normal', 'slim', or 'broad'.\n")
+    warning("Defaulting to 'normal'.\n")
     dictionary <- "normal"
   }
 
@@ -65,34 +68,38 @@ create_game <- function(num_letters = 7, game_letters = NULL, min_word_length = 
 
   if(obscenities) dictionary <- c(dictionary, profanities)
 
+  if(is.null(game_letters) & (! is.null(central))) {
+    if(tolower(central)[[1]] %in% letters) game_letters <- tolower(central)
+  }
+
   user_game_letters <- game_letters
   user_num <- ifelse(length(user_game_letters) > 0, nchar(user_game_letters), 0)
 
-  if(user_num >= num_letters & ! is.null(user_game_letters)) {
-    warning("You provided more letters than the number for the game.")
-    warning(paste0("Only ", num_letters, " will be chosen."))
+  if(user_num > num_letters & ! is.null(user_game_letters)) {
+    warning("You provided more letters than the number for the game.\n")
+    warning(paste0("Only ", num_letters, " will be chosen.\n"))
   }
 
   if(min_word_length == 2) {
-    warning("Including two-letter words may make the game quite cumbersome.")
+    warning("Including two-letter words may make the game quite cumbersome.\n")
   } else if(min_word_length < 2) {
-    warning("Including one-letter words is not permitted; defaulting to four-letter word minimum.")
+    warning("Including one-letter words is not permitted; defaulting to four-letter word minimum.\n")
     min_word_length <- 4
   } else if(min_word_length > 6) {
-    warning("This game can be close to impossible with only longer words... defaulting to four-letter word minimum.")
+    warning("This game can be close to impossible with only longer words... defaulting to four-letter word minimum.\n")
     min_word_length <- 4
   }
   if(min_word_length > num_letters) stop(
     paste0("Minimum word length can't be smaller than the number of ",
            "letters... even if you can imagine some words that would ",
-           "make that work!"))
+           "make that work!\n"))
   game_letters <- choose_game_letters(game_letters = user_game_letters,
-                            num_letters = num_letters)
+                                      num_letters = num_letters)
 
   if( ! has_pangram(game_letters, dictionary) &
       user_num > num_letters - 1) {
     stop(paste0("There is unlikely to be a pangram with the chosen letters. ",
-                "Consider selecting fewer must-have letters."))
+                "Consider selecting fewer must-have letters.\n"))
   }
 
   check_counter <- 1
@@ -109,7 +116,20 @@ create_game <- function(num_letters = 7, game_letters = NULL, min_word_length = 
                        " with different or fewer letters.", ".")))
   }
 
-  central_letter <- sample(game_letters, 1)
+  if(! is.null(central)) {
+    central <- tolower(central)
+    if(nchar(central) != 1) {
+      warning("You've included multiple central letters, but only one will be used.\n")
+      central <- sample(central, 1)
+    }
+    if(! central %in% game_letters) {
+      warning("Your chosen central letter is not in the game letters.\n")
+      central <- sample(game_letters, 1)
+    }
+    central_letter <- central
+  } else {
+    central_letter <- sample(game_letters, 1)
+  }
 
   word_list <- find_all_words(game_letters, min_word_length,
                               central_letter, dictionary)
@@ -202,7 +222,7 @@ test_word <- function(input, game, state) {
 #'   same letters (and therefore words).
 #' @param ... Arguments to pass to \code{\link{create_game}}, including
 #'   \code{num_letters}, \code{game_letters}, \code{min_word_length},
-#'   \code{dictionary}, and \code{obscenities}.
+#'   \code{central} \code{dictionary}, and \code{obscenities}.
 #'
 #' @return Regardless of whether you include any inputs, the code will run a
 #'   version of the game. If passed a game object from \code{create_game},
@@ -283,6 +303,8 @@ play_game <- function(game = NULL,
         state
       },
       "y" = print_rules(game, state),
+      "rules" = print_rules(game, state),
+      "help" = print_rules(game, state),
       "[g]" = all_guesses(state),
       "[a]" = print_answers(game, state),
       test_word(input, game, state)
