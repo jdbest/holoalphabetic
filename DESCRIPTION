@@ -9,6 +9,7 @@ Authors@R:
            role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1868-0337"),
            email = "jdainerbest@bard.edu")
+Maintainer: Justin Dainer-Best <jdainerbest@bard.edu>
 Description: Inspired by the New York Times' "Spelling Bee", the package gives 
     you a set of 7 or more letters and invites you to identify all possible 
     words using those letters. Find the pangram which uses all 7, or simply 
