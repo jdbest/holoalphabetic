@@ -20,7 +20,7 @@ The game is inspired by the New York Times' "[Spelling Bee](https://www.nytimes.
 
 In R, you can install directly from github:
 
-```
+``` r
 # if needed: install.packages("devtools")
 devtools::install_github("jdbest/holoalphabetic")
 ```
@@ -29,14 +29,14 @@ devtools::install_github("jdbest/holoalphabetic")
 
 The most direct way to play the game is just running the function `play_game()`:
 
-```{r}
+``` r
 library(holoalphabetic)
 play_game()
 ```
 
 However, if you think you may want to play the game a bit at a time, you may assign the game's data to a variable, and then reuse it:
 
-```
+``` r
 game1 <- play_game()
 game1 <- play_game(game1)
 ```
@@ -47,7 +47,7 @@ You may always exit the game by typing an `x` in the Console; doing so will save
 
 You can also play the game with modifications; for example, you might want to play a smaller (6-letter) variant with profanity included:
 
-```
+``` r
 game2 <- play_game(num_letters = 6, obscenities = TRUE)
 game2 <- play_game(game2)
 ```
@@ -58,7 +58,7 @@ game2 <- play_game(game2)
 
 The function `create_game()` is called by `play_game()` to make a new pangram; you may choose to create multiple games all at once, and access just the letters from the resulting object, e.g.:
 
-```
+``` r
 letter_list <- create_game(num_letters = 8)
 letter_list$game_letters
 ```
@@ -71,14 +71,15 @@ The function `find_all_words()` takes a string of letters and attempts to identi
 
 The function `has_pangram()` takes a vector of separated letters and simply identifies whether a pangram exists. This is particularly useful if you're doubting yourself! It intentionally does *not* tell you what the pangram is, however. (Use `find_all_words()` for that... or find it yourself!)
 
-```
+``` r
 find_all_words("jutis")
 has_pangram("jutis")
 ```
 
 ## Planned changes
 
+* Upade the functions so that `play_game()` directly takes arguments for `create_game()`
 * Ideally, clean up the word-choice function to happen more quickly, thus allowing for larger word sets---although this will likely always take some time. Even using regular expressions and looping only through words identified that way can still take seconds to find a game with a functioning pangram.
-* Allow users to play *without* a central letter (i.e., closer to Boggle)
 * Consider switching to using a package-created environment, as per *[Advanced R](https://adv-r.hadley.nz/environments.html#explicit-envs)*
 * If a word list (corpus) is easily found, add a Spanish-language version
+* Add a website
