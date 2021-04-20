@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://jdbest.github.io/holoalphabetic/index.html</loc>
+  </url>
+  <url>
+    <loc>https://jdbest.github.io/holoalphabetic/reference/create_game.html</loc>
+  </url>
+  <url>
+    <loc>https://jdbest.github.io/holoalphabetic/reference/find_all_words.html</loc>
+  </url>
+  <url>
+    <loc>https://jdbest.github.io/holoalphabetic/reference/has_pangram.html</loc>
+  </url>
+  <url>
+    <loc>https://jdbest.github.io/holoalphabetic/reference/holoalphabetic.html</loc>
+  </url>
+  <url>
+    <loc>https://jdbest.github.io/holoalphabetic/reference/play_game.html</loc>
+  </url>
+</urlset>
