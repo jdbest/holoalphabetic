@@ -49,6 +49,14 @@ You can also play the game with modifications; for example, you might want to pl
 
 ``` r
 game2 <- play_game(num_letters = 6, obscenities = TRUE)
+```
+
+    If you'd like to see the rules, enter 'y' and then hit return.
+    Otherwise, enter your first word or leave the line blank to reorder the letters.
+    Selecting letters!...Letters: F g l z n i 
+    ? 
+
+``` r
 game2 <- play_game(game2)
 ```
 
