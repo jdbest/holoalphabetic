@@ -84,7 +84,7 @@ play_game(prev_game)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">holoalphabetic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
       </span>
     </div>
 
@@ -136,7 +136,17 @@ will allow you to pause and continue the game later by running
 <code>play_game(prev_game)</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>play_game</span><span class='op'>(</span>game <span class='op'>=</span> <span class='cn'>NULL</span>, keep_central_first <span class='op'>=</span> <span class='cn'>FALSE</span>, restart <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>play_game</span><span class='op'>(</span>
+  game <span class='op'>=</span> <span class='cn'>NULL</span>,
+  keep_central_first <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  restart <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  game_letters <span class='op'>=</span> <span class='cn'>NULL</span>,
+  num_letters <span class='op'>=</span> <span class='fl'>7</span>,
+  central <span class='op'>=</span> <span class='cn'>NULL</span>,
+  min_word_length <span class='op'>=</span> <span class='fl'>4</span>,
+  dictionary <span class='op'>=</span> <span class='st'>"normal"</span>,
+  obscenities <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,14 +166,42 @@ using a previous game, <code>game</code> will contain both the game and
     <tr>
       <th>restart</th>
       <td><p>Logical. Only useful when trying anew with an existing game.
-Deletes previous guesses and starts with a clean slate, while using the
-same letters (and therefore words).</p></td>
+  Deletes previous guesses and starts with a clean slate, while using the
+  same letters (and therefore words).</p>
+<p>The remaining arguments are passed to the <code><a href='create_game.html'>create_game</a></code> function
+  and all can be left out.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Arguments to pass to <code><a href='create_game.html'>create_game</a></code>, including
-<code>num_letters</code>, <code>game_letters</code>, <code>min_word_length</code>,
-<code>central</code> <code>dictionary</code>, and <code>obscenities</code>.</p></td>
+      <th>game_letters</th>
+      <td><p>User-selected letters to use in the game. Will
+result in a warning if more letters are chosen than <code>num_letters</code>. If
+including, this should be a character string, e.g., "stb".</p></td>
+    </tr>
+    <tr>
+      <th>num_letters</th>
+      <td><p>The number of letters for the game; defaults to 7, and
+should be between 6 and 10.</p></td>
+    </tr>
+    <tr>
+      <th>central</th>
+      <td><p>The central (that is, required) letter. If not
+provided, will be randomly chosen from among the <code>game_letters</code>.</p></td>
+    </tr>
+    <tr>
+      <th>min_word_length</th>
+      <td><p>Expected length of words. Defaults to 4 letters, but
+can be between 2 and 6.</p></td>
+    </tr>
+    <tr>
+      <th>dictionary</th>
+      <td><p>Character string. Choice of how detailed of a dictionary to
+use. Can be any of "slim", "broad", or "normal". Defaults to "normal",
+which is recommended.</p></td>
+    </tr>
+    <tr>
+      <th>obscenities</th>
+      <td><p>Logical. Should obscenities be included? Defaults to
+FALSE.</p></td>
     </tr>
     </table>
 

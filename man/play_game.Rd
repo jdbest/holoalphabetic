@@ -4,7 +4,17 @@
 \alias{play_game}
 \title{Play the holoalphabetic game}
 \usage{
-play_game(game = NULL, keep_central_first = FALSE, restart = FALSE, ...)
+play_game(
+  game = NULL,
+  keep_central_first = FALSE,
+  restart = FALSE,
+  game_letters = NULL,
+  num_letters = 7,
+  central = NULL,
+  min_word_length = 4,
+  dictionary = "normal",
+  obscenities = FALSE
+)
 }
 \arguments{
 \item{game}{A game object created by \code{\link{create_game}}. If null, the
@@ -16,12 +26,31 @@ using a previous game, \code{game} will contain both the game and
 "central" letter first when printing the letters. Defaults to FALSE.}
 
 \item{restart}{Logical. Only useful when trying anew with an existing game.
-Deletes previous guesses and starts with a clean slate, while using the
-same letters (and therefore words).}
+  Deletes previous guesses and starts with a clean slate, while using the
+  same letters (and therefore words).
 
-\item{...}{Arguments to pass to \code{\link{create_game}}, including
-\code{num_letters}, \code{game_letters}, \code{min_word_length},
-\code{central} \code{dictionary}, and \code{obscenities}.}
+The remaining arguments are passed to the \code{\link{create_game}} function
+  and all can be left out.}
+
+\item{game_letters}{User-selected letters to use in the game. Will
+result in a warning if more letters are chosen than \code{num_letters}. If
+including, this should be a character string, e.g., "stb".}
+
+\item{num_letters}{The number of letters for the game; defaults to 7, and
+should be between 6 and 10.}
+
+\item{central}{The central (that is, required) letter. If not
+provided, will be randomly chosen from among the \code{game_letters}.}
+
+\item{min_word_length}{Expected length of words. Defaults to 4 letters, but
+can be between 2 and 6.}
+
+\item{dictionary}{Character string. Choice of how detailed of a dictionary to
+use. Can be any of "slim", "broad", or "normal". Defaults to "normal",
+which is recommended.}
+
+\item{obscenities}{Logical. Should obscenities be included? Defaults to
+FALSE.}
 }
 \value{
 Regardless of whether you include any inputs, the code will run a
