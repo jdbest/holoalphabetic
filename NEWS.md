@@ -1,3 +1,8 @@
+# holoalphabetic 0.1.3
+
+* Included full parameters for `create_game()` in the `play_game()` function
+* Added {pkgdown} website to github pages
+
 # holoalphabetic 0.1.2
 
 * Included option to specify the "central" letter in creating a game
