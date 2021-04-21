@@ -159,10 +159,20 @@ test_word <- function(input, game, state) {
     state$guesses[input] <- input
     # if input is contained in word list
     if( ! is.null(state$words[input][[1]])) {
-      state$score <- state$score + state$words[input][[1]] # add to score
-      state$correct <- c(state$correct, input)             # add to correct list
-      if(input %in% game$pangram) cat("That's a pangram!\n") # if pangram, say so
-      cat(state$words[input][[1]], "points!\n")
+      # if it's not been guessed previously
+      if(! input %in% state$correct) {
+        # add to score
+        state$score <- state$score + state$words[input][[1]]
+        # add to correct list
+        state$correct <- c(state$correct, input)
+        # if pangram, say so
+        if(input %in% game$pangram) cat("That's a pangram!\n")
+        # report the points
+        cat(state$words[input][[1]], "points!\n")
+      } else { # if it's been guessed before
+        cat(paste0("You've already guessed ", input,
+                   "... Try again!\n"))
+      }
     } else { # if not in word list, test why... are letters correct, etc.
       not_letters <- paste0("[^", paste0(game$remaining_letters, collapse = ""),
                             game$central_letter, "]")
@@ -184,7 +194,7 @@ test_word <- function(input, game, state) {
                           sum(unlist(state$words)), fill=TRUE)
   if(state$score == sum(unlist(state$words))) {
     cat("You've correctly gotten all the words! Impressive! ")
-    state$finished = FALSE
+    state$finished <- TRUE
     return(state)
   }
   if(state$keep_central_first) {
@@ -274,6 +284,7 @@ play_game <- function(game = NULL,
   if(! is.null(game$state)) {
     state <- game$state
     game <- game$game
+
     if(restart) {
       cat("You've restarted the game. Erasing your guesses and score.\n")
       state <- NULL
@@ -282,9 +293,10 @@ play_game <- function(game = NULL,
       cat("You've resumed your game.\n")
       if(length(state$correct) > 0) cat("Correctly guessed:",
                                         paste(state$correct),
-                                        fill=TRUE)
+                                        fill = TRUE)
       if(state$score > 0) cat("Score: ", state$score, "/",
-                              sum(unlist(state$words)), fill=TRUE)
+                              sum(unlist(state$words)),
+                              fill=TRUE)
     }
   } else {
     cat("If you'd like to see the rules, enter 'y' and then hit return.\n")
@@ -301,7 +313,7 @@ play_game <- function(game = NULL,
 
   cat("Letters:", toupper(game$central_letter), game$remaining_letters, "\n")
 
-  if(! exists("state")) {
+  if(! exists("state") | is.null(state)) {
     state <- list(counter = 0,
                   guesses = list(),
                   words = game$scored_word_list,

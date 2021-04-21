@@ -23,6 +23,9 @@
 #'
 #' @export
 has_pangram <- function(game_letters, dictionary = normal) {
+  # make sure letters are in right format
+  game_letters <- tolower(game_letters)
+  if(length(game_letters) == 1) {game_letters <- unlist(strsplit(game_letters, ""))}
   # include only words that start with our letters,
   # use only them, and end with them
   any_pattern <- paste0("^[", paste0(game_letters, collapse=""), "]+$")

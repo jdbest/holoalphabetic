@@ -2,6 +2,9 @@
 
 * Included full parameters for `create_game()` in the `play_game()` function
 * Added {pkgdown} website to github pages
+* Stopped score from incrementing when you guess the same thing again
+* Fixed `restart = TRUE` argument for `play_game()`
+* Fix `has_pangram()` for manual call, so that it can be used with a single string of characters (e.g., `has_pangram("jutis")` rather than only `has_pangram(c("j", "u", "t", "i", "s"))`)
 
 # holoalphabetic 0.1.2
 
