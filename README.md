@@ -10,7 +10,7 @@ The R functions have been written to create an interactive game, meaning that yo
 
 The game is inspired by the New York Times' "[Spelling Bee](https://www.nytimes.com/puzzles/spelling-bee)," and uses word lists from the [Spell Checking Oriented Word Lists](http://wordlist.aspell.net/scowl-readme) (SCOWL) by Kevin Atkinson. Because of the multiple lists, this game adds the following functionality (besides the fact that you can play as many games as you like!):
 
-* You can choose the number of letters in the game, from 6--10 (`num_letters`)
+* You can choose the number of letters in the game, from 6&ndash;10 (`num_letters`)
 * You can use a more restrictive dictionary (`dictionary = "slim"`) or a broader, more inclusive one (`dictionary = "broad"`)
 * You can include profanity (`obscenities = TRUE`)
 * You can choose to specify the minimum number of letters for words (e.g., allow three-letter words) with `min_word_length`
