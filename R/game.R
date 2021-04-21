@@ -220,9 +220,24 @@ test_word <- function(input, game, state) {
 #' @param restart Logical. Only useful when trying anew with an existing game.
 #'   Deletes previous guesses and starts with a clean slate, while using the
 #'   same letters (and therefore words).
-#' @param ... Arguments to pass to \code{\link{create_game}}, including
-#'   \code{num_letters}, \code{game_letters}, \code{min_word_length},
-#'   \code{central} \code{dictionary}, and \code{obscenities}.
+#'
+#' The remaining arguments are passed to the \code{\link{create_game}} function
+#'   and all can be left out.
+#'
+#' @param game_letters User-selected letters to use in the game. Will
+#'   result in a warning if more letters are chosen than \code{num_letters}. If
+#'   including, this should be a character string, e.g., "stb".
+#' @param num_letters The number of letters for the game; defaults to 7, and
+#'   should be between 6 and 10.
+#' @param central The central (that is, required) letter. If not
+#'   provided, will be randomly chosen from among the \code{game_letters}.
+#' @param min_word_length Expected length of words. Defaults to 4 letters, but
+#'   can be between 2 and 6.
+#' @param dictionary Character string. Choice of how detailed of a dictionary to
+#'   use. Can be any of "slim", "broad", or "normal". Defaults to "normal",
+#'   which is recommended.
+#' @param obscenities Logical. Should obscenities be included? Defaults to
+#'   FALSE.
 #'
 #' @return Regardless of whether you include any inputs, the code will run a
 #'   version of the game. If passed a game object from \code{create_game},
@@ -249,7 +264,12 @@ test_word <- function(input, game, state) {
 play_game <- function(game = NULL,
                       keep_central_first = FALSE,
                       restart = FALSE,
-                      ...) {
+                      game_letters = NULL,
+                      num_letters = 7,
+                      central = NULL,
+                      min_word_length = 4,
+                      dictionary = "normal",
+                      obscenities = FALSE) {
   # if the first argument includes a state, then divide it out
   if(! is.null(game$state)) {
     state <- game$state
@@ -274,7 +294,9 @@ play_game <- function(game = NULL,
   # if called directly, create a game first
   if(is.null(game)) {
     cat("Selecting letters!...")
-    game <- create_game(...)
+    game <- create_game(game_letters, num_letters,
+                        central, min_word_length,
+                        dictionary, obscenities)
     }
 
   cat("Letters:", toupper(game$central_letter), game$remaining_letters, "\n")
