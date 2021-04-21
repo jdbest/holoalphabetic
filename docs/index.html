@@ -118,13 +118,37 @@
 <code class="sourceCode R"><span class="va">game1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">game1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span><span class="va">game1</span><span class="op">)</span></code></pre></div>
 <p>You may always exit the game by typing an <code>x</code> in the Console; doing so will save your data. Note that using the ESC key will <strong>not</strong> result in your data saving.</p>
-<div id="changing-the-defaults" class="section level3">
+<div id="changing-the-defaults-example" class="section level3">
 <h3 class="hasAnchor">
-<a href="#changing-the-defaults" class="anchor"></a>Changing the defaults</h3>
+<a href="#changing-the-defaults-example" class="anchor"></a>Changing the defaults (example)</h3>
 <p>You can also play the game with modifications; for example, you might want to play a smaller (6-letter) variant with profanity included:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">game2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span>num_letters <span class="op">=</span> <span class="fl">6</span>, obscenities <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">game2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span><span class="va">game2</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">game2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span>num_letters <span class="op">=</span> <span class="fl">6</span>, obscenities <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you'd like to see the rules, enter 'y' and then hit return.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Otherwise, enter your first word or leave the line blank to reorder the letters.</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecting letters!...Letters: F g l z n i </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>? </span></code></pre></div>
+<p>Responding with a guess grants points (1 per minimum-length word, and 1 per letter for any words over the minimum length) and a response that includes the total number of possible points.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>? flinging</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 8 points!</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Correctly guessed: flinging</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Score:  8 / 72</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Letters: l z i g n F</span></span></code></pre></div>
+<p>Responding with a word not in the dictionary receives a response, e.g., “No, flizzing isn’t in the word list.”; guesses without the central letter remind you to use it. Guessing the pangram receives a specific note:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>? fizzling</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># That's a pangram!</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 15 points!</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Correctly guessed: flinging fizzing fizzling</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Score:  30 / 72</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Letters: F z g n l i</span></span></code></pre></div>
+<p>Quitting the game can be done at any time by hitting an x alone; pressing the escape key also quits but does not save progress. The game—if saved— can be resumed:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">game2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span><span class="va">game2</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You've resumed your game.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Correctly guessed: flinging fizzing fizzling</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Score:  30 / 72</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Letters: F g l z n i </span></span></code></pre></div>
+<p>Guessing all words results in a complete score (here, 72/72). However, you can pause the game (by entering an x), ask for all possible words (by entering <code>[a]</code> and confirming with a <code>y</code>), or reread the “rules” (by entering just a <code>y</code> at the prompt).</p>
 </div>
 </div>
 <div id="other-functions" class="section level2">
@@ -135,10 +159,12 @@
 <a href="#create_game" class="anchor"></a><code>create_game()</code>
 </h3>
 <p>The function <code><a href="reference/create_game.html">create_game()</a></code> is called by <code><a href="reference/play_game.html">play_game()</a></code> to make a new pangram; you may choose to create multiple games all at once, and access just the letters from the resulting object, e.g.:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">letter_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_game.html">create_game</a></span><span class="op">(</span>num_letters <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12</span><span class="op">)</span>
+<span class="va">letter_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_game.html">create_game</a></span><span class="op">(</span>num_letters <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
 <span class="va">letter_list</span><span class="op">$</span><span class="va">game_letters</span></code></pre></div>
-<p>The <code><a href="reference/create_game.html">create_game()</a></code> function chooses letters at random unless you request otherwise; as a result, it occasionally will take some time until it identifies letters that can form a pangram, especially if you’re using <code>num_letters</code> higher than 7.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "c" "x" "o" "t" "i" "m" "a" "n"</span></span></code></pre></div>
+<p>The <code><a href="reference/create_game.html">create_game()</a></code> function chooses letters at random unless you request otherwise (here, the seed should result in the same eight letters); as a result, it occasionally will take some time until it identifies letters that can form a pangram, especially if you’re using <code>num_letters</code> higher than 7.</p>
 </div>
 <div id="find_all_words-and-has_pangram" class="section level3">
 <h3 class="hasAnchor">
@@ -146,9 +172,17 @@
 </h3>
 <p>The function <code><a href="reference/find_all_words.html">find_all_words()</a></code> takes a string of letters and attempts to identify words that use any combination of them. By default, all words will use the first letter as the central one; you can change this argument.</p>
 <p>The function <code><a href="reference/has_pangram.html">has_pangram()</a></code> takes a vector of separated letters and simply identifies whether a pangram exists. This is particularly useful if you’re doubting yourself! It intentionally does <em>not</em> tell you what the pangram is, however. (Use <code><a href="reference/find_all_words.html">find_all_words()</a></code> for that… or find it yourself!)</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="reference/find_all_words.html">find_all_words</a></span><span class="op">(</span><span class="st">"jutis"</span><span class="op">)</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/find_all_words.html">find_all_words</a></span><span class="op">(</span><span class="va">letter_list</span><span class="op">$</span><span class="va">game_letters</span><span class="op">)</span> <span class="co"># letter list from above</span></code></pre></div>
+<p>This results in a character vector of 85 words.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/has_pangram.html">has_pangram</a></span><span class="op">(</span><span class="va">letter_list</span><span class="op">$</span><span class="va">game_letters</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># TRUE</span></span></code></pre></div>
+<p>You can also manually enter the letters:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/find_all_words.html">find_all_words</a></span><span class="op">(</span><span class="st">"jutis"</span>, dictionary <span class="op">=</span> <span class="va">broad</span><span class="op">)</span>
 <span class="fu"><a href="reference/has_pangram.html">has_pangram</a></span><span class="op">(</span><span class="st">"jutis"</span><span class="op">)</span></code></pre></div>
+<p>(There are three words with a normal dictionary, but 11 with the broad dictionary, which includes alternative spellings and plurals of the pangram; you may or may not consider these to be “real English words.”")</p>
 </div>
 </div>
 <div id="planned-changes" class="section level2">

@@ -43,7 +43,7 @@ game1 <- play_game(game1)
 
 You may always exit the game by typing an `x` in the Console; doing so will save your data. Note that using the ESC key will **not** result in your data saving. 
 
-### Changing the defaults
+### Changing the defaults (example)
 
 You can also play the game with modifications; for example, you might want to play a smaller (6-letter) variant with profanity included:
 
@@ -51,14 +51,40 @@ You can also play the game with modifications; for example, you might want to pl
 game2 <- play_game(num_letters = 6, obscenities = TRUE)
 ```
 
-    If you'd like to see the rules, enter 'y' and then hit return.
-    Otherwise, enter your first word or leave the line blank to reorder the letters.
-    Selecting letters!...Letters: F g l z n i 
+    # If you'd like to see the rules, enter 'y' and then hit return.
+    # Otherwise, enter your first word or leave the line blank to reorder the letters.
+    # Selecting letters!...Letters: F g l z n i 
     ? 
+
+Responding with a guess grants points (1 per minimum-length word, and 1 per letter for any words over the minimum length) and a response that includes the total number of possible points.
+
+    ? flinging
+    # 8 points!
+    # Correctly guessed: flinging
+    # Score:  8 / 72
+    # Letters: l z i g n F
+
+Responding with a word not in the dictionary receives a response, e.g., "No, flizzing isn't in the word list."; guesses without the central letter remind you to use it. Guessing the pangram receives a specific note:
+
+    ? fizzling
+    # That's a pangram!
+    # 15 points!
+    # Correctly guessed: flinging fizzing fizzling
+    # Score:  30 / 72
+    # Letters: F z g n l i
+
+Quitting the game can be done at any time by hitting an x alone; pressing the escape key also quits but does not save progress. The game&mdash;if saved&mdash; can be resumed:
 
 ``` r
 game2 <- play_game(game2)
 ```
+
+    # You've resumed your game.
+    # Correctly guessed: flinging fizzing fizzling
+    # Score:  30 / 72
+    # Letters: F g l z n i 
+
+Guessing all words results in a complete score (here, 72/72). However, you can pause the game (by entering an x), ask for all possible words (by entering `[a]` and confirming with a `y`), or reread the "rules" (by entering just a `y` at the prompt). 
 
 ## Other functions
 
@@ -67,11 +93,14 @@ game2 <- play_game(game2)
 The function `create_game()` is called by `play_game()` to make a new pangram; you may choose to create multiple games all at once, and access just the letters from the resulting object, e.g.:
 
 ``` r
+set.seed(12)
 letter_list <- create_game(num_letters = 8)
 letter_list$game_letters
 ```
 
-The `create_game()` function chooses letters at random unless you request otherwise; as a result, it occasionally will take some time until it identifies letters that can form a pangram, especially if you're using `num_letters` higher than 7.
+    # "c" "x" "o" "t" "i" "m" "a" "n"
+
+The `create_game()` function chooses letters at random unless you request otherwise (here, the seed should result in the same eight letters); as a result, it occasionally will take some time until it identifies letters that can form a pangram, especially if you're using `num_letters` higher than 7.
 
 ### `find_all_words()` and `has_pangram()`
 
@@ -80,9 +109,25 @@ The function `find_all_words()` takes a string of letters and attempts to identi
 The function `has_pangram()` takes a vector of separated letters and simply identifies whether a pangram exists. This is particularly useful if you're doubting yourself! It intentionally does *not* tell you what the pangram is, however. (Use `find_all_words()` for that... or find it yourself!)
 
 ``` r
-find_all_words("jutis")
+find_all_words(letter_list$game_letters) # letter list from above
+```
+
+This results in a character vector of 85 words.
+
+``` r
+has_pangram(letter_list$game_letters)
+```
+
+    # TRUE
+
+You can also manually enter the letters:
+
+``` r
+find_all_words("jutis", dictionary = broad)
 has_pangram("jutis")
 ```
+
+(There are three words with a normal dictionary, but 11 with the broad dictionary, which includes alternative spellings and plurals of the pangram; you may or may not consider these to be "real English words."")
 
 ## Planned changes
 
