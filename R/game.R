@@ -313,7 +313,7 @@ play_game <- function(game = NULL,
 
   cat("Letters:", toupper(game$central_letter), game$remaining_letters, "\n")
 
-  if(! exists("state") | is.null(state)) {
+  if(! exists("state") || is.null(state)) {
     state <- list(counter = 0,
                   guesses = list(),
                   words = game$scored_word_list,
