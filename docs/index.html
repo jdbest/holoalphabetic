@@ -31,6 +31,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -43,18 +45,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">holoalphabetic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.4</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -64,7 +60,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/jdbest/holoalphabetic/">
+  <a href="https://github.com/jdbest/holoalphabetic/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -81,14 +77,14 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="holoalphabetic-interactive-pangram-word-games" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#holoalphabetic-interactive-pangram-word-games" class="anchor"></a>holoalphabetic: Interactive pangram word games</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="holoalphabetic-interactive-pangram-word-games">holoalphabetic: Interactive pangram word games<a class="anchor" aria-label="anchor" href="#holoalphabetic-interactive-pangram-word-games"></a>
+</h1></div>
 <p><img src="reference/figures/logo.png"></p>
 <p>This is a series of R functions written to create “pangram” wordgames. A pangram or holoalphabetic sentence is one which uses every letter of the alphabet, e.g., “Sphinx of black quartz, judge my vow.” (Or, more famously, “The quick brown fox jumps over the lazy dog.”) In the context of this game, however, the word game is limited to 6-10 letters (defaulting to 7). For example, the letters l, a, h, t, o, m, and b can form 46 words of at least four letters, of which the only pangram (using all seven letters) is “mothball”.</p>
-<p>The game requires you to use <strong>one letter</strong> in every word - for example, <em>m</em> might be required, meaning that “moth” would be an acceptable word, but “loath” would not be.</p>
+<p>The game requires you to use <strong>one of the letters</strong> in every word - for example, <em>m</em> might be required, meaning that “moth” would be an acceptable word, but “loath” would not be.</p>
 <p>The R functions have been written to create an interactive game, meaning that you can guess words and receive points for each word.</p>
-<p>The game is inspired by the New York Times’ “<a href="https://www.nytimes.com/puzzles/spelling-bee">Spelling Bee</a>,” and uses word lists from the <a href="http://wordlist.aspell.net/scowl-readme">Spell Checking Oriented Word Lists</a> (SCOWL) by Kevin Atkinson. Because of the multiple lists, this game adds the following functionality (besides the fact that you can play as many games as you like!):</p>
+<p>The game is inspired by the New York Times’ “<a href="https://www.nytimes.com/puzzles/spelling-bee" class="external-link">Spelling Bee</a>,” and uses word lists from the <a href="http://wordlist.aspell.net/scowl-readme" class="external-link">Spell Checking Oriented Word Lists</a> (SCOWL) by Kevin Atkinson. Because of the multiple lists, this game adds the following functionality (besides the fact that you can play as many games as you like!):</p>
 <ul>
 <li>You can choose the number of letters in the game, from 6–10 (<code>num_letters</code>)</li>
 <li>You can use a more restrictive dictionary (<code>dictionary = "slim"</code>) or a broader, more inclusive one (<code>dictionary = "broad"</code>)</li>
@@ -98,29 +94,30 @@
 <li>You can choose to play your own version (e.g., provide your own seven letters) with <code>game_letters</code>
 </li>
 </ul>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<p>You may also find hints with <code><a href="reference/print_hint_list.html">print_hint_list()</a></code> or <code><a href="reference/print_answers.html">print_answers()</a></code>.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>In R, you can install directly from github:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># if needed: install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"jdbest/holoalphabetic"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jdbest/holoalphabetic"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="playing-the-game" class="section level2">
-<h2 class="hasAnchor">
-<a href="#playing-the-game" class="anchor"></a>Playing the game</h2>
+<div class="section level2">
+<h2 id="playing-the-game">Playing the game<a class="anchor" aria-label="anchor" href="#playing-the-game"></a>
+</h2>
 <p>The most direct way to play the game is just running the function <code><a href="reference/play_game.html">play_game()</a></code>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://jdbest.github.io/holoalphabetic">holoalphabetic</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jdbest.github.io/holoalphabetic">holoalphabetic</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>However, if you think you may want to play the game a bit at a time, you may assign the game’s data to a variable, and then reuse it:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">game1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">game1</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span><span class="va">game1</span><span class="op">)</span></code></pre></div>
 <p>You may always exit the game by typing an <code>x</code> in the Console; doing so will save your data. Note that using the ESC key will <strong>not</strong> result in your data saving.</p>
-<div id="changing-the-defaults-example" class="section level3">
-<h3 class="hasAnchor">
-<a href="#changing-the-defaults-example" class="anchor"></a>Changing the defaults (example)</h3>
+<div class="section level3">
+<h3 id="changing-the-defaults-example">Changing the defaults (example)<a class="anchor" aria-label="anchor" href="#changing-the-defaults-example"></a>
+</h3>
 <p>You can also play the game with modifications; for example, you might want to play a smaller (6-letter) variant with profanity included:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">game2</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/play_game.html">play_game</a></span><span class="op">(</span>num_letters <span class="op">=</span> <span class="fl">6</span>, obscenities <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
@@ -151,24 +148,25 @@
 <p>Guessing all words results in a complete score (here, 72/72). However, you can pause the game (by entering an x), ask for all possible words (by entering <code>[a]</code> and confirming with a <code>y</code>), or reread the “rules” (by entering just a <code>y</code> at the prompt).</p>
 </div>
 </div>
-<div id="other-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#other-functions" class="anchor"></a>Other functions</h2>
-<div id="create_game" class="section level3">
-<h3 class="hasAnchor">
-<a href="#create_game" class="anchor"></a><code>create_game()</code>
+<div class="section level2">
+<h2 id="other-functions">Other functions<a class="anchor" aria-label="anchor" href="#other-functions"></a>
+</h2>
+<div class="section level3">
+<h3 id="create_game">
+<code>create_game()</code><a class="anchor" aria-label="anchor" href="#create_game"></a>
 </h3>
 <p>The function <code><a href="reference/create_game.html">create_game()</a></code> is called by <code><a href="reference/play_game.html">play_game()</a></code> to make a new pangram; you may choose to create multiple games all at once, and access just the letters from the resulting object, e.g.:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">12</span><span class="op">)</span>
 <span class="va">letter_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/create_game.html">create_game</a></span><span class="op">(</span>num_letters <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
 <span class="va">letter_list</span><span class="op">$</span><span class="va">game_letters</span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "c" "x" "o" "t" "i" "m" "a" "n"</span></span></code></pre></div>
 <p>The <code><a href="reference/create_game.html">create_game()</a></code> function chooses letters at random unless you request otherwise (here, the seed should result in the same eight letters); as a result, it occasionally will take some time until it identifies letters that can form a pangram, especially if you’re using <code>num_letters</code> higher than 7.</p>
 </div>
-<div id="find_all_words-and-has_pangram" class="section level3">
-<h3 class="hasAnchor">
-<a href="#find_all_words-and-has_pangram" class="anchor"></a><code>find_all_words()</code> and <code>has_pangram()</code>
+<div class="section level3">
+<h3 id="find_all_words-and-has_pangram">
+<code>find_all_words()</code> and <code>has_pangram()</code>
+<a class="anchor" aria-label="anchor" href="#find_all_words-and-has_pangram"></a>
 </h3>
 <p>The function <code><a href="reference/find_all_words.html">find_all_words()</a></code> takes a string of letters and attempts to identify words that use any combination of them. By default, all words will use the first letter as the central one; you can change this argument.</p>
 <p>The function <code><a href="reference/has_pangram.html">has_pangram()</a></code> takes a vector of separated letters and simply identifies whether a pangram exists. This is particularly useful if you’re doubting yourself! It intentionally does <em>not</em> tell you what the pangram is, however. (Use <code><a href="reference/find_all_words.html">find_all_words()</a></code> for that… or find it yourself!)</p>
@@ -185,17 +183,48 @@
 <p>(There are three words with a normal dictionary, but 11 with the broad dictionary, which includes alternative spellings and plurals of the pangram; you may or may not consider these to be “real English words.”")</p>
 </div>
 </div>
-<div id="planned-changes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#planned-changes" class="anchor"></a>Planned changes</h2>
+<div class="section level2">
+<h2 id="getting-hints-or-finding-cheats">Getting hints or finding cheats<a class="anchor" aria-label="anchor" href="#getting-hints-or-finding-cheats"></a>
+</h2>
+<p>These functions are called within the game; run on their own, they either show <strong>all the answers</strong> (<code><a href="reference/print_answers.html">print_answers()</a></code>) or give hints (word lengths by initial letter; if desired, first two <em>or</em> first three letters of all words: <code><a href="reference/print_hint_list.html">print_hint_list()</a></code>).</p>
+<p>For example,</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/print_hint_list.html">print_hint_list</a></span><span class="op">(</span><span class="st">"chentyu"</span>, central <span class="op">=</span> <span class="st">"h"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Words: 18, Pangram: 1 (1 perfect). </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#      4  5  6  7  8 Sum</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># c    -  1  -  1  -   2</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># e    1  -  1  -  1   3</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># h    1  3  -  -  -   4</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># t    3  3  3  -  -   9</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum  5  7  4  1  1  18</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Would you like to see the first two (type '2') or three (type '3') letters of the words? </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># If neither, just hit enter.</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># ? </span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span> <span class="fl">2</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># he hu </span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  1  3 </span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># te th </span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  5  4 </span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ch </span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  2 </span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># et eu ey </span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  1  1  1 </span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="planned-changes">Planned changes<a class="anchor" aria-label="anchor" href="#planned-changes"></a>
+</h2>
 <ul>
 <li>Upade the functions so that <code><a href="reference/play_game.html">play_game()</a></code> directly takes arguments for <code><a href="reference/create_game.html">create_game()</a></code>
 </li>
 <li>Ideally, clean up the word-choice function to happen more quickly, thus allowing for larger word sets—although this will likely always take some time. Even using regular expressions and looping only through words identified that way can still take seconds to find a game with a functioning pangram.</li>
-<li>Consider switching to using a package-created environment, as per <em><a href="https://adv-r.hadley.nz/environments.html#explicit-envs">Advanced R</a></em>
+<li>Consider switching to using a package-created environment, as per <em><a href="https://adv-r.hadley.nz/environments.html#explicit-envs" class="external-link">Advanced R</a></em>
 </li>
 <li>If a word list (corpus) is easily found, add a Spanish-language version</li>
-<li>Add a website</li>
 </ul>
 </div>
 </div>
@@ -203,37 +232,49 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/jdbest/holoalphabetic/">https://​github.com/​jdbest/​holoalphabetic/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/jdbest/holoalphabetic/issues">https://​github.com/​jdbest/​holoalphabetic/​issues</a>
-</li>
+<li><a href="https://github.com/jdbest/holoalphabetic/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/jdbest/holoalphabetic/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>GPL (&gt;= 3)</li>
 </ul>
 </div>
-<div class="developers">
-<h2>Developers</h2>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li>Justin Dainer-Best <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1868-0337" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html#citation">Citing holoalphabetic</a></li>
 </ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Justin Dainer-Best <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1868-0337" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+</ul>
+</div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Justin Dainer-Best.</p>
+  <p></p>
+<p>Developed by Justin Dainer-Best.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -241,6 +282,8 @@
 
   
 
+
+  
 
   </body>
 </html>
