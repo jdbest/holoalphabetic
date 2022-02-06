@@ -4,7 +4,7 @@
 
 This is a series of R functions written to create "pangram" wordgames. A pangram or holoalphabetic sentence is one which uses every letter of the alphabet, e.g., "Sphinx of black quartz, judge my vow." (Or, more famously, "The quick brown fox jumps over the lazy dog.") In the context of this game, however, the word game is limited to 6-10 letters (defaulting to 7). For example, the letters l, a, h, t, o, m, and b can form 46 words of at least four letters, of which the only pangram (using all seven letters) is "mothball".
 
-The game requires you to use **one letter** in every word - for example, *m* might be required, meaning that "moth" would be an acceptable word, but "loath" would not be.
+The game requires you to use **one of the letters** in every word - for example, *m* might be required, meaning that "moth" would be an acceptable word, but "loath" would not be.
 
 The R functions have been written to create an interactive game, meaning that you can guess words and receive points for each word.
 
@@ -15,6 +15,8 @@ The game is inspired by the New York Times' "[Spelling Bee](https://www.nytimes.
 * You can include profanity (`obscenities = TRUE`)
 * You can choose to specify the minimum number of letters for words (e.g., allow three-letter words) with `min_word_length`
 * You can choose to play your own version (e.g., provide your own seven letters) with `game_letters`
+
+You may also find hints with `print_hint_list()` or `print_answers()`.
 
 ## Installation
 
@@ -129,10 +131,46 @@ has_pangram("jutis")
 
 (There are three words with a normal dictionary, but 11 with the broad dictionary, which includes alternative spellings and plurals of the pangram; you may or may not consider these to be "real English words."")
 
+## Getting hints or finding cheats
+
+These functions are called within the game; run on their own, they either show **all the answers** (`print_answers()`) or give hints (word lengths by initial letter; if desired, first two *or* first three letters of all words: `print_hint_list()`). 
+
+For example, 
+
+``` r 
+print_hint_list("chentyu", central = "h")
+```
+
+    # Words: 18, Pangram: 1 (1 perfect). 
+    # 
+    #      4  5  6  7  8 Sum
+    # c    -  1  -  1  -   2
+    # e    1  -  1  -  1   3
+    # h    1  3  -  -  -   4
+    # t    3  3  3  -  -   9
+    # Sum  5  7  4  1  1  18
+    # Would you like to see the first two (type '2') or three (type '3') letters of the words? 
+    # If neither, just hit enter.
+    # ? 
+
+``` r 
+? 2
+```
+    # he hu 
+    #  1  3 
+    # 
+    # te th 
+    #  5  4 
+    #
+    # ch 
+    #  2 
+    # 
+    # et eu ey 
+    #  1  1  1 
+
 ## Planned changes
 
 * Upade the functions so that `play_game()` directly takes arguments for `create_game()`
 * Ideally, clean up the word-choice function to happen more quickly, thus allowing for larger word sets---although this will likely always take some time. Even using regular expressions and looping only through words identified that way can still take seconds to find a game with a functioning pangram.
 * Consider switching to using a package-created environment, as per *[Advanced R](https://adv-r.hadley.nz/environments.html#explicit-envs)*
 * If a word list (corpus) is easily found, add a Spanish-language version
-* Add a website
