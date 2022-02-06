@@ -1,7 +1,6 @@
 # helper functions
 # choose_game_letters()
 # score_words()
-# print_answers()
 # print_rules()
 # all_guesses()
 
@@ -51,30 +50,6 @@ score_words <- function(word_list, pangram, num_letters) {
   scored_word_list
 }
 
-
-print_answers <- function(game, state) {
-  if(! is.null(game$state)) {
-    state <- game$state
-    game <- game$game
-    cat("Correctly guessed:", paste(state$correct), fill=TRUE)
-    cat("Score: ", state$score, "/", sum(unlist(state$words)), fill=TRUE)
-  }
-  cat("Ready to see the full word list? Type a y if so!: ")
-  answer_i <- tolower(readline(prompt="? "))
-  if(answer_i == "y") {
-    cat(paste0("The pangram",
-               ifelse(length(game$pangram) == 1, " is:", "s are:")),
-        paste(game$pangram, collapse = ", "), "\n\n")
-    words <- names(game$scored_word_list)
-    words <- words[ ! words %in% game$pangram]
-    cat("The remaining words follow:\n",
-        paste(sort(words), collapse = ", "))
-    state$finished = TRUE
-  }
-  return(invisible(state))
-}
-
-
 print_rules <- function(game, state) {
   cat(paste0("For each game, you'll be presented with a set of letters, ",
              "usually seven (unless you choose otherwise). ",
@@ -92,7 +67,7 @@ print_rules <- function(game, state) {
              "you can always quit with ESC or by hitting just an 'x', ",
              "or rearrange the ",
              "letters by not typing anything and hitting enter. Want to see all",
-             " of the answers? Type [a] (brackets included). You can always ",
+             " of the answers? Type [a] (brackets included). You can also get hints by typing [h]. You can always ",
              "review the rules by typing y... or see past guesses with [g]\n\n",
              "Ready to go? ",
              "Guess your first word. \n\nThe letters: ",
