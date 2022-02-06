@@ -9,8 +9,8 @@ play_game(
   keep_central_first = FALSE,
   restart = FALSE,
   game_letters = NULL,
-  num_letters = 7,
   central = NULL,
+  num_letters = 7,
   min_word_length = 4,
   dictionary = "normal",
   obscenities = FALSE
@@ -36,11 +36,11 @@ The remaining arguments are passed to the \code{\link{create_game}} function
 result in a warning if more letters are chosen than \code{num_letters}. If
 including, this should be a character string, e.g., "stb".}
 
-\item{num_letters}{The number of letters for the game; defaults to 7, and
-should be between 6 and 10.}
-
 \item{central}{The central (that is, required) letter. If not
 provided, will be randomly chosen from among the \code{game_letters}.}
+
+\item{num_letters}{The number of letters for the game; defaults to 7, and
+should be between 6 and 10.}
 
 \item{min_word_length}{Expected length of words. Defaults to 4 letters, but
 can be between 2 and 6.}
