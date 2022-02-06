@@ -1,3 +1,8 @@
+# holoalphabetic 0.1.4
+
+* Added a `print_hint_list()` function to print hints while playing, including both first two letters and first three letters
+* Made `print_hint_list()` and `print_answers()` into exported functions that can be called to check on outside games
+
 # holoalphabetic 0.1.3
 
 * Included full parameters for `create_game()` in the `play_game()` function
