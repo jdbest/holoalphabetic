@@ -22,10 +22,10 @@
 #' @param game_letters User-selected letters to use in the game (optional). Will
 #'   result in a warning if more letters are chosen than \code{num_letters}. If
 #'   including, this should be a character string, e.g., "stb".
-#' @param num_letters The number of letters for the game; defaults to 7, and
-#'   should be between 6 and 10.
 #' @param central The central (that is, required) letter (optional). If not
 #'   provided, will be randomly chosen from among the \code{game_letters}.
+#' @param num_letters The number of letters for the game; defaults to 7, and
+#'   should be between 6 and 10.
 #' @param min_word_length Expected length of words. Defaults to 4 letters, but
 #'   can be between 2 and 6.
 #' @param dictionary Character string. Choice of how detailed of a dictionary to
@@ -47,9 +47,10 @@
 #' @seealso \code{\link{play_game}} to play the game
 #'
 #' @export
-create_game <- function(game_letters = NULL, num_letters = 7,
-                        central = NULL, min_word_length = 4,
-                 dictionary = "normal", obscenities = FALSE) {
+create_game <- function(game_letters = NULL, central = NULL,
+                        num_letters = 7, min_word_length = 4,
+                        dictionary = "normal",
+                        obscenities = FALSE) {
   if( ! num_letters %in% c(6:10)) {
     warning(paste0("The game is meant to be played with between 6 and 10 letters. ",
                 "Using the default of 7; please choose a number between 6 and 10.\n"))
@@ -237,10 +238,10 @@ test_word <- function(input, game, state) {
 #' @param game_letters User-selected letters to use in the game. Will
 #'   result in a warning if more letters are chosen than \code{num_letters}. If
 #'   including, this should be a character string, e.g., "stb".
-#' @param num_letters The number of letters for the game; defaults to 7, and
-#'   should be between 6 and 10.
 #' @param central The central (that is, required) letter. If not
 #'   provided, will be randomly chosen from among the \code{game_letters}.
+#' @param num_letters The number of letters for the game; defaults to 7, and
+#'   should be between 6 and 10.
 #' @param min_word_length Expected length of words. Defaults to 4 letters, but
 #'   can be between 2 and 6.
 #' @param dictionary Character string. Choice of how detailed of a dictionary to
@@ -275,8 +276,8 @@ play_game <- function(game = NULL,
                       keep_central_first = FALSE,
                       restart = FALSE,
                       game_letters = NULL,
-                      num_letters = 7,
                       central = NULL,
+                      num_letters = 7,
                       min_word_length = 4,
                       dictionary = "normal",
                       obscenities = FALSE) {
@@ -306,8 +307,8 @@ play_game <- function(game = NULL,
   # if called directly, create a game first
   if(is.null(game)) {
     cat("Selecting letters!...")
-    game <- create_game(game_letters, num_letters,
-                        central, min_word_length,
+    game <- create_game(game_letters, central,
+                        num_letters, min_word_length,
                         dictionary, obscenities)
     }
 
@@ -340,7 +341,8 @@ play_game <- function(game = NULL,
       "rules" = print_rules(game, state),
       "help" = print_rules(game, state),
       "[g]" = all_guesses(state),
-      "[a]" = print_answers(game, state),
+      "[a]" = print_answers(game = game, state = state),
+      "[h]" = print_hint_list(game = game),
       test_word(input, game, state)
       )
   }
